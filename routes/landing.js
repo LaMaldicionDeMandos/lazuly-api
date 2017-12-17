@@ -1,12 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const contacts = require('../controllers/contacts');
 
 /* GET home page. */
-router.post('/contact', (req, res) => {
-  const body = req.body;
-  console.log("sending message to contacts...");
-  console.log(JSON.stringify(body));
-  res.send(body);
-});
+router.post('/contact', contacts.sendMessage);
 
 module.exports = router;
