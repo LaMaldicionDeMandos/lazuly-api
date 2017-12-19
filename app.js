@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
@@ -7,6 +8,7 @@ var landing = require('./routes/landing');
 
 var app = express();
 
+app.use(cors()).options('*', cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
