@@ -3,6 +3,6 @@
   "port": "PORT",
   "secret": "SECRET",
   "auth": {
-    "bo_secret": "BO_SECRET"
+    "secret": "AUTH_SECRET"
   }
 }
