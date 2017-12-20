@@ -16,12 +16,7 @@ class ContactController {
     const email = {
       code: CONTACT_CODE,
       to: CONTACTS,
-      payload: {
-        email: body.email,
-        full_name: body.full_name,
-        school_name: body.school_name,
-        message: body.message
-      }
+      payload: body
     };
     const options = {
       method: 'POST',
