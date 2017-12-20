@@ -5,5 +5,8 @@
   "contact": {
     "email_code": "275842",
     "emails": ["pasutmarcelo@gmail.com", "anbenito@yahoo.com.ar"]
+  },
+  "auth": {
+    "bo_app_key": "lazuly-bo"
   }
 }

@@ -1,5 +1,8 @@
 {
   "host": "HOST",
   "port": "PORT",
-  "secret": "SECRET"
+  "secret": "SECRET",
+  "auth": {
+    "bo_secret": "BO_SECRET"
+  }
 }
