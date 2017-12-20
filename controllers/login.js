@@ -5,7 +5,7 @@ const request = require('request-promise');
 
 const HOST = config.get('host');
 const LOGIN_URI = `${HOST}/auth/oauth/token`;
-const API_KEY = config.get('auth.bo_app_key');
+const API_KEY = config.get('auth.app_key');
 const SECRET = config.get('auth.secret');
 const BASIC = `Basic ${new Buffer(API_KEY + ":" + SECRET).toString("base64")}`;
 class LoginController {

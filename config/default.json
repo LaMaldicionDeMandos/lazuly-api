@@ -7,6 +7,6 @@
     "emails": ["pasutmarcelo@gmail.com", "anbenito@yahoo.com.ar"]
   },
   "auth": {
-    "bo_app_key": "lazuly-bo"
+    "app_key": "lazuly"
   }
 }
