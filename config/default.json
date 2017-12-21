@@ -8,5 +8,12 @@
   },
   "auth": {
     "app_key": "lazuly"
+  },
+  "forgot": {
+    "email_code": "279687"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379
   }
 }
