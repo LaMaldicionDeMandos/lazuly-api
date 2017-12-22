@@ -16,6 +16,7 @@ const BASIC = `Basic ${new Buffer(API_KEY + ":" + SECRET).toString("base64")}`;
 const EMAIL_URI = `${HOST}/mail`;
 const EMAIL_CODE = config.get('forgot.email_code');
 const APP_SECRET = config.get('secret');
+const TTL = config.get('redis.ttl');
 
 const getOptions = (form) => {
   return {
@@ -76,8 +77,8 @@ class LoginController {
     console.log(`${userEmail} olvido su contraseña`);
     const token = randtoken.generate(16);
     console.log(`generating token: ${token} for ${userEmail}`);
-    redis.set(userEmail, token, 'EX', 10); //expire in 10 seconds
-    redis.set(token, userEmail, 'EX', 10);
+    redis.set(userEmail, token, 'EX', TTL); //expire in seconds
+    redis.set(token, userEmail, 'EX', TTL);
 
     const email = {
       code: EMAIL_CODE,
