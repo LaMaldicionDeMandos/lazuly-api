@@ -6,5 +6,6 @@ const login = require('../controllers/login');
 router.post('/login', login.login);
 router.get('/refresh/:token', login.refresh);
 router.post('/forgot/:user', login.forgotPassword);
+router.patch('/password/:token', login.restorePassword);
 
 module.exports = router;
