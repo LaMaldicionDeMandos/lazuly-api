@@ -57,6 +57,21 @@ class UserController {
       .then((users) => res.send(users))
       .catch((err) => res.status(500).send(err));
   }
+
+  static remove(req, res) {
+    console.log('delete user: ' + req.params.email);
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': req.headers.authorization
+      },
+      uri: `${USERS_URI}/${req.params.email}`,
+      json: true
+    };
+    request(options)
+      .then((users) => res.send(users))
+      .catch((err) => res.status(500).send(err));
+  }
 }
 
 module.exports = UserController;
