@@ -72,6 +72,22 @@ class UserController {
       .then((users) => res.send(users))
       .catch((err) => res.status(500).send(err));
   }
+
+  static newUser(req, res) {
+    console.log('new user: ' + JSON.stringify(req.body));
+    const options = {
+      method: 'POST',
+      headers: {
+        'Authorization': req.headers.authorization
+      },
+      uri: USERS_URI,
+      body: req.body,
+      json: true
+    };
+    request(options)
+      .then((users) => res.status(201).send(users))
+      .catch((err) => res.status(500).send(err));
+  }
 }
 
 module.exports = UserController;
