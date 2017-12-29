@@ -5,5 +5,6 @@ const authorize = require('../middlewares/verifytoken');
 
 /* GET home page. */
 router.get('/me/permissions', authorize, users.getPermissions);
+router.get('/', authorize, users.getUsers);
 
 module.exports = router;

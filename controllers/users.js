@@ -5,6 +5,7 @@ const request = require('request-promise');
 
 const HOST = config.get('host');
 const PERMISSIONS_URI = `${HOST}/auth/users`;
+const USERS_URI = `${HOST}/users`;
 const SECRET = config.get('secret');
 
 class UserController {
@@ -22,6 +23,23 @@ class UserController {
     request(options)
       .then((permissions) => res.send(permissions))
       .catch(() => res.status(500).send());
+  }
+
+  static getUsers(req, res) {
+    const username = req.user.user_name;
+    console.log('get user: ' + username);
+    console.log('authorization header: ' + req.headers.authorization);
+    const options = {
+      method: 'GET',
+      headers: {
+        'Authorization': req.headers.authorization
+      },
+      uri: USERS_URI,
+      json: true
+    };
+    request(options)
+      .then((users) => res.send(users))
+      .catch((err) => res.status(500).send(err));
   }
 }
 
