@@ -41,6 +41,22 @@ class UserController {
       .then((users) => res.send(users))
       .catch((err) => res.status(500).send(err));
   }
+
+  static change(req, res) {
+    console.log('change user: ' + JSON.stringify(req.body));
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Authorization': req.headers.authorization
+      },
+      uri: `${USERS_URI}/${req.params.email}`,
+      body: req.body,
+      json: true
+    };
+    request(options)
+      .then((users) => res.send(users))
+      .catch((err) => res.status(500).send(err));
+  }
 }
 
 module.exports = UserController;
