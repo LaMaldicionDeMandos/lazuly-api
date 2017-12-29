@@ -1,14 +1,15 @@
-var express = require('express');
-var cors = require('cors');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
-var landing = require('./routes/landing');
-var login = require('./routes/login');
-var users = require('./routes/users');
+const landing = require('./routes/landing');
+const login = require('./routes/login');
+const users = require('./routes/users');
+const roles = require('./routes/roles');
 
-var app = express();
+const app = express();
 
 app.use(cors()).options('*', cors());
 app.use(logger('dev'));
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/landing', landing);
 app.use('/', login);
 app.use('/users', users);
+app.use('/roles', roles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
