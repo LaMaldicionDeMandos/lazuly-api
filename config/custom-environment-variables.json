@@ -4,5 +4,11 @@
   "secret": "SECRET",
   "auth": {
     "secret": "AUTH_SECRET"
+  },
+  "aws": {
+    "s3": {
+      "access_key": "AWS_ACCESS_KEY",
+      "secret": "AWS_SECRET"
+    }
   }
 }
