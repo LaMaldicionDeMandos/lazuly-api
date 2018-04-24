@@ -4,39 +4,42 @@
 const request = require('request-promise');
 
 const HOST = config.get('host');
-const USERS_URI = `${HOST}/profiles`;
-
-var profile = {};
-profile.last_name = 'Pasut';
-profile.first_name = 'Marcelo';
-profile.email = 'pasutmarcelo@gmail.com';
-profile.contact_email = 'pasutmarcelo@gmail.com';
+//staging
+const USERS_URI = `${HOST}/users`;
+//local
+//const USERS_URI = `http://localhost:8082`;
 
 class ProfileController {
 
   static me(req, res) {
     console.log('get my profile');
-    /*
     const options = {
-      method: 'PUT',
+      method: 'GET',
       headers: {
         'Authorization': req.headers.authorization
       },
-      uri: `${USERS_URI}/${req.params.email}`,
-      body: req.body,
+      uri: `${USERS_URI}/me/profile`,
       json: true
     };
     request(options)
       .then((users) => res.send(users))
       .catch((err) => res.status(500).send(err));
-      */
-    res.send(profile);
   }
 
   static change(req, res) {
-    console.log('change my profile');
-    profile = req.body;
-    res.send(profile);
+    console.log(`params: ${JSON.stringify(req.params)}`);
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Authorization': req.headers.authorization
+      },
+      uri: `${USERS_URI}/${req.params.email}/profile`,
+      body: req.body,
+      json: true
+    };
+    request(options)
+      .then((user) => res.send(user))
+      .catch((err) => res.status(500).send(err));
   }
 }
 
