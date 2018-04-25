@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const fileUploader = require('express-fileupload');
 
 const landing = require('./routes/landing');
 const login = require('./routes/login');
@@ -16,6 +17,7 @@ app.use(cors()).options('*', cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(fileUploader({limits: { fileSize: config.get('file_max_size') }, abortOnLimit: true }));
 
 app.use('/landing', landing);
 app.use('/', login);

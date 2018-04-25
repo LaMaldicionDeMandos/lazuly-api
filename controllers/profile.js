@@ -9,6 +9,8 @@ const USERS_URI = `${HOST}/users`;
 //local
 //const USERS_URI = `http://localhost:8082`;
 
+const MIMETYPE_JPG = 'image/jpeg';
+
 class ProfileController {
 
   static me(req, res) {
@@ -40,6 +42,13 @@ class ProfileController {
     request(options)
       .then((user) => res.send(user))
       .catch((err) => res.status(500).send(err));
+  }
+
+  static changePicture(req, res) {
+    const file = req.files.picture;
+    console.log(`File data: ${JSON.stringify(file)}`);
+    if (MIMETYPE_JPG !== file.mimetype) return res.status(400).send();
+    return res.send(req.files.picture);
   }
 }
 
