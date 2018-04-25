@@ -11,6 +11,9 @@ const USERS_URI = `${HOST}/users`;
 
 const MIMETYPE_JPG = 'image/jpeg';
 
+const FileStorageService = require('../services/file-storage-service');
+const fileStorage = new FileStorageService();
+
 class ProfileController {
 
   static me(req, res) {
@@ -30,25 +33,32 @@ class ProfileController {
 
   static change(req, res) {
     console.log(`params: ${JSON.stringify(req.params)}`);
+    const userName = req.params.email || req.user.user_name;
     const options = {
       method: 'PATCH',
       headers: {
         'Authorization': req.headers.authorization
       },
-      uri: `${USERS_URI}/${req.params.email}/profile`,
+      uri: `${USERS_URI}/${userName}/profile`,
       body: req.body,
       json: true
     };
     request(options)
-      .then((user) => res.send(user))
+      .then((user) => res.send(user.profile))
       .catch((err) => res.status(500).send(err));
   }
 
   static changePicture(req, res) {
+    const user = req.user;
+    console.log(`User ${JSON.stringify(user)}`);
     const file = req.files.picture;
     console.log(`File data: ${JSON.stringify(file)}`);
     if (MIMETYPE_JPG !== file.mimetype) return res.status(400).send();
-    return res.send(req.files.picture);
+    return fileStorage
+      .builder(`${user.user_name}-${file.name}`, file.data)
+      .upload()
+      .then((url) => res.send(url))
+      .catch((e) => res.status(500).send(e));
   }
 }
 

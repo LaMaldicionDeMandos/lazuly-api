@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "aws-sdk": "^2.228.1",
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "config": "^1.28.1",

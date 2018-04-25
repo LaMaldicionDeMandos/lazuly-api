@@ -7,8 +7,9 @@
   },
   "aws": {
     "s3": {
-      "access_key": "AWS_ACCESS_KEY",
-      "secret": "AWS_SECRET"
+      "api_key": "AWS_ACCESS_KEY",
+      "secret": "AWS_SECRET",
+      "bucket": "AWS_S3_BUCKET"
     }
   }
 }
